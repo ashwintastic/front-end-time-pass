@@ -1,29 +1,27 @@
 import React, { Component } from 'react';
-
+import ImageGifComponent from './ImageGifComponent'
 
 export default class ContentComponent extends Component {
+    constructor(props){
+     super(props)
+        this.state = {
+         content: null
+        }
+    }
 
 
 
     componentDidMount(){
-
+      this.props.fetchcontentsFromserver()
     }
 
-
     render() {
+        console.log('opopopopop', this.props.contents)
         return (
             <div className="App">
-
                 <div className="container">
                     <div className="content-container">
-                        <div className="">
-                            <div className="thumbnail">
-                                    <img src="https://www.w3schools.com/w3images/lights.jpg" alt="Lights" style={{width:"100%"}}/>
-                                    <div className="caption">
-                                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                                    </div>
-                            </div>
-                        </div>
+                        <ImageGifComponent contentCollection = {this.props.contents}/>
                     </div>
                 </div>
             </div>
