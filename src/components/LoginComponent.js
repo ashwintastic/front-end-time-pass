@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import axios from 'axios'
+var $ = require("jquery");
+const fetch = require('node-fetch');
+
 class LoginComponent extends Component {
     state = {
         isLoggedIn: false,
@@ -15,21 +18,19 @@ class LoginComponent extends Component {
     }
 
     static getDerivedStateFromProps(props, state){
-        console.log('props', props)
+           if ( typeof props.content == 'undefined'){
+               return
+           }
+            localStorage.setItem("token", props.contents.token.token);
     }
 
+
     responseFacebook(resp){
-        // console.log('response from FB', resp)
-        // var resp = await axios.post('http://localhost:3003/facebook/callback',{
-        //     data: resp
-        // })
-        // console.log('token', resp)
-        console.log('resp', resp)
         this.props.fetchTokenFromserver(resp)
+
     }
 
     render(){
-        console.log('props', 'render')
         let fbContent;
         if (this.state.isLoggedIn){
 
