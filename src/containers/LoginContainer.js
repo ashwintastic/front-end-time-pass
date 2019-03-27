@@ -4,9 +4,8 @@ import LoginComponent from '../components/LoginComponent'
 import *  as async from '../AsyncCalls'
 
 function mapStateToProps(state) {
-    console.log("state", state)
     return {
-        contents: state.jwtToken
+        jwtToken: state.jwtToken.token
     };
 }
 

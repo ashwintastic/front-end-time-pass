@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import FacebookLogin from 'react-facebook-login';
-import axios from 'axios'
-var $ = require("jquery");
 const fetch = require('node-fetch');
 
 class LoginComponent extends Component {
@@ -18,16 +16,18 @@ class LoginComponent extends Component {
     }
 
     static getDerivedStateFromProps(props, state){
-           if ( typeof props.content == 'undefined'){
-               return
+           if ( typeof props.jwtToken === 'undefined'){
+               return;
            }
-            localStorage.setItem("token", props.contents.token.token);
+
+        console.log('localstore', props.jwtToken.token)
+        localStorage.setItem("token", props.jwtToken.token);
     }
 
 
     responseFacebook(resp){
+        console.log('facebook ', resp)
         this.props.fetchTokenFromserver(resp)
-
     }
 
     render(){

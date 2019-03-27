@@ -4,8 +4,7 @@ import {fork, takeEvery, put, call, takeLatest, all, select } from 'redux-saga/e
 function* asyncfetch(action = {}){
     try {
         const response = yield call(action.remote, {endpoint: action.endpoint, payload: action.payload});
-        const jsonResponse = yield response.json();
-        yield put({ type: action.type.replace('_WATHCER', ''), payload: jsonResponse });
+        yield put({ type: action.type.replace('_WATHCER', ''), payload: response.data });
     }
     catch(e){
         console.log("Some error", e)

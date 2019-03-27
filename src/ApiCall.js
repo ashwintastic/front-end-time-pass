@@ -1,7 +1,5 @@
-const fetch = require('node-fetch');
-const Bluebird = require('bluebird');
-fetch.Promise = Bluebird;
+import axios from 'axios'
 export default function apiCall(){
-
-    return fetch
+    axios.defaults.headers.common['token'] = localStorage.getItem('token');
+    return axios
 }
